@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
-import CalculatorKey from "./CalculatorKey";
 
 function Calculator() {
-  const [prevValue, setPreValue] = useState(null);
-  const [nextValue, setNextValue] = useState("0");
-  const [op, setOp] = useState(null);
+  const [firstValue, setFirstValue] = useState(null);
+  const [secondValue, setSecondValue] = useState("0");
+  const [op, setOp] = useState("null");
 
-  useEffect(() => {}, [op, nextValue, prevValue]);
-
-  const CalculatorOperation = {
+  useEffect(() => {}, [op, secondValue, firstValue]);
+  const CalculatorOperations = {
     "/": (num1, num2) => num1 / num2,
     "*": (num1, num2) => num1 * num2,
     "+": (num1, num2) => num1 + num2,
@@ -16,84 +14,194 @@ function Calculator() {
     "=": (num1, num2) => num2,
   };
   const performOperation = () => {
-    let temp = CalculatorOperation[op](
-      parseFloat(prevValue),
-      parseFloat(nextValue)
+    let temp = CalculatorOperations[op](
+      parseFloat(firstValue),
+      parseFloat(secondValue)
     );
     setOp(null);
-    setNextValue(String(temp));
-    setPreValue(null);
+    setSecondValue(String(temp));
+    setFirstValue(null);
   };
   const handleNum = (number) => {
-    setNextValue(nextValue === "0" ? String(number) : nextValue + number);
+    setSecondValue(secondValue === "0" ? String(number) : secondValue + number);
   };
   const clearData = () => {
-    setNextValue("0");
-    setPreValue(0);
-  };
-  const insertDot = () => {
-    if (!/\./.test(nextValue)) {
-      setNextValue(nextValue + ".");
-    }
+    setSecondValue("0");
+    setFirstValue(0);
   };
 
   const whenClicked = (value) => {
-    // if(value === '7'){
-    //   console.log('clearData()')
-    // } else {
-    //   console.log('Hello')
-    // }
     if (Number.isInteger(value)) {
       handleNum(parseInt(value, 10));
-    } else if (value in CalculatorOperation) {
+    } else if (value in CalculatorOperations) {
       if (op === null) {
         setOp(value);
-        setPreValue(nextValue);
-        setNextValue("");
+        setFirstValue(secondValue);
+        setSecondValue("");
       }
       if (op) {
         setOp(value);
       }
-      if (prevValue && op && nextValue) {
+      if (firstValue && op && secondValue) {
         performOperation();
       }
     } else if (value === "DEL") {
       clearData();
-    } else if (value === ".") {
-      insertDot();
+    } else if (value === "RESET") {
+      clearData();
     }
   };
-
   return (
-    <div className="calculator">
-      <div className="calculator-input">
-        <div className="result">{nextValue}</div>
-      </div>
-      <div className="calculator-keypad">
-        <div className="keys-operators">
-          <CalculatorKey className="keys" keyValue={"DEL"} onClick={whenClicked} />
-          <CalculatorKey  className="keys" keyValue={"+"} onClick={whenClicked} />
-          <CalculatorKey className="keys" keyValue={"-"} onClick={whenClicked} />
-          <CalculatorKey className="keys" keyValue={"*"} onClick={whenClicked} />
-        </div>
-        <div className="keys-numbers">
-          <CalculatorKey  className="keys" keyValue={"9"} onClick={whenClicked} />
-          <CalculatorKey  className="keys" keyValue={"8"} onClick={whenClicked} />
-          <CalculatorKey  className="keys" keyValue={"7"} onClick={whenClicked} />
-          <CalculatorKey className="keys" keyValue={"6"} onClick={whenClicked} />
-          <CalculatorKey className="keys" keyValue={"5"} onClick={whenClicked} />
-          <CalculatorKey className="keys" keyValue={"4"} onClick={whenClicked} />
-          <CalculatorKey className="keys" keyValue={"3"} onClick={whenClicked} />
-          <CalculatorKey className="keys" keyValue={"2"} onClick={whenClicked} />
-          <CalculatorKey className="keys" keyValue={"1"} onClick={whenClicked} />
-          <CalculatorKey className="keys" keyValue={"/"} onClick={whenClicked} />
-          <CalculatorKey className="keys" keyValue={"0"} onClick={whenClicked} />
-          <CalculatorKey className="keys" keyValue={"."} onClick={whenClicked} />
-        </div>
-        <div className="keys-reset">
-          <CalculatorKey keyValue={"Reset"} onClick={whenClicked} />
-          <CalculatorKey keyValue={"="} onClick={whenClicked} />
-        </div>
+    <div className="calculator bg1 flex items-center justify-center  xl:py-20 h-screen w-screen">
+      <div className="bg1 max-w-full md:max-w-full xl:max-w-full">
+        <header className="flex justify-between mb-6">
+          <div className="text-white font-bold  xs:text-xl">Calc</div>
+          <div className="toggle  flex flex-col items-end">
+            <div className="flex text-white xs:text-xl">
+              <p className="px-2">1</p>
+              <p className="px-2">2</p>
+              <p className="px-2">3</p>
+            </div>
+            <div className="flex items-center">
+              <p className="text-white text-xs mr-3 ">THEME</p>
+
+              <div className="t-bg1 p-2 rounded-3xl text-center flex">
+                <button className="w-2 h-2  rounded-full ml-2"></button>
+                <button className=" w-2 h-2  rounded-full ml-3 "></button>
+                <button className=" w-2 h-2  rounded-full  "></button>
+                <div className="t-btn1 p-0 w-3 h-3 rounded-full "></div>
+              </div>
+            </div>
+          </div>
+        </header>
+        <main>
+          <div className=" flex flex col w-full ">
+            <input className="s-bg1 p-2 rounded-md w-full "/>
+              
+          </div>
+          <div className=" grid grid-cols-4 gap-4 my-2 t-bg1 rounded-md py-5 px-3">
+            <button
+              className="n-btn1 rounded-md "
+              onClick={whenClicked}
+              value="7"
+            >
+              7
+            </button>
+            <button
+              className="n-btn1 rounded-md "
+              onClick={whenClicked}
+              value={8}
+            >
+              8
+            </button>
+            <button
+              className="n-btn1 rounded-md"
+              onClick={whenClicked}
+              value={9}
+            >
+              9
+            </button>
+            <button className="r-btn1 rounded-md" onClick={whenClicked}>
+              DEL
+            </button>
+            <button
+              className="n-btn1 rounded-md "
+              onClick={whenClicked}
+              value={4}
+            >
+              4
+            </button>
+            <button
+              className="n-btn1 rounded-md"
+              onClick={whenClicked}
+              value={5}
+            >
+              5
+            </button>
+            <button
+              className="n-btn1 rounded-md"
+              onClick={whenClicked}
+              value={6}
+            >
+              6
+            </button>
+            <button
+              className="n-btn1 rounded-md"
+              onClick={whenClicked}
+              value={"+"}
+            >
+              +
+            </button>
+            <button
+              className="n-btn1 rounded-md"
+              onClick={whenClicked}
+              value={1}
+            >
+              1
+            </button>
+            <button
+              className="n-btn1 rounded-md"
+              onClick={whenClicked}
+              value={2}
+            >
+              2
+            </button>
+            <button
+              className="n-btn1 rounded-md"
+              onClick={whenClicked}
+              value={3}
+            >
+              3
+            </button>
+            <button
+              className="n-btn1 rounded-md"
+              onClick={whenClicked}
+              value={"-"}
+            />
+              
+            <button
+              className="n-btn1 rounded-md"
+              onClick={whenClicked}
+              value={"."}
+            >
+              .
+            </button>
+            <button
+              className="n-btn1 rounded-md"
+              onClick={whenClicked}
+              value={0}
+            >
+              0
+            </button>
+            <button
+              className="n-btn1 rounded-md"
+              onClick={whenClicked}
+              value={"/"}
+            >
+              /
+            </button>
+            <button
+              className="n-btn1 rounded-md"
+              onClick={whenClicked}
+              value={"*"}
+            >
+              *
+            </button>
+            <button
+              className="r-btn1 rounded-md col-span-2"
+              onClick={whenClicked}
+            >
+              Reset
+            </button>
+            <button
+              className="e-btn1 rounded-md col-span-2 "
+              onClick={whenClicked}
+              value={"="}
+            >
+              =
+            </button>
+          </div>
+        </main>
       </div>
     </div>
   );
