@@ -8,7 +8,6 @@ function Calculator() {
 
   const colourChanger = (i) => {
     setBackground(i);
-    console.log(i);
     localStorage.setItem("backgrounds", i);
   };
   
@@ -18,8 +17,6 @@ function Calculator() {
       setBackground(currentBackground);
     }
   }, []);
-
-  
   
   function handleInput (value){
     const stringValue = value.toString();
@@ -39,29 +36,39 @@ function Calculator() {
     setInputValue("");
   };
 
-
   
   const evaluate = () => {
     const splittedString = inputValue.split(" ");
     let invalid = false;
-    
+
+    // "66 + 009 + 2 - 03 + 620"
+    // ["66", "+", "009", "+", "2", "-", "03", "+", "620"]
+
+    const newArray = [];
+
     splittedString.forEach((value) => {
       if (value.startsWith(0)) {
-        invalid = true;
+        // https://www.codegrepper.com/code-examples/javascript/javascript+remove+leading+zeros+from+string
+        value = value.replace(/^0+/, '')
       }
+      newArray.push(value);
     });
 
+    const newVal = newArray.toString();
+    const newNum = newVal.replace(/,/g, " ");
+
     if (!invalid) {
-      const result = eval(inputValue);
+      const result = eval(newNum);
       setInputValue(result);
       setOp("=");
     }
   };
 
   const handleDelete = () => {
-    setInputValue((prevState) => prevState.slice(0, -1));
+    setInputValue((prevState) => {
+      prevState.slice(0, -1)
+    });
   };
-
 
   return (
     <div
@@ -113,35 +120,45 @@ function Calculator() {
                 THEME
               </p>
 
-              <div className={`${
+              {/* <div className={`${
                   background === "2"
                     ? "t-bg2"
                     : background === "3"
                     ? "t-bg3"
                     : "t-bg1"
                 } p-2 rounded-3xl text-center flex`}>
-                
                  <button
-                  
-                  onClick={colourChanger("1")}
+                  onClick={() => colourChanger("1")}
                   className={`${
                     background === "1" && "t-btn1"
-                  } w-2 h-2 rounded-full  ml-6`}
+                  } w-2 h-2 rounded-full ml-6`}
                 ></button>
-
                 <button
-                  
-                  onClick={colourChanger("2")}
+                  onClick={() => colourChanger("2")}
                   className={`${
                     background === "2" && "t-btn2"
-                  }w-2 h-2  rounded-full ml-3 `}
+                  } w-2 h-2 rounded-full ml-3`}
                 ></button>
                 <button
-                
-                  onClick={colourChanger("3")}
+                  onClick={() => colourChanger("3")}
                   className={`${
                     background === "3" && "t-btn3"
-                  } w-2 h-2  rounded-full`}
+                  } w-2 h-2 rounded-full`}
+                ></button>
+              </div> */}
+
+              <div className="p-2 rounded-3xl text-center flex">
+                <button
+                  onClick={() => colourChanger("1")}
+                  className="bg-red-500 w-3 h-3 rounded-full ml-6"
+                ></button>
+                <button
+                  onClick={() => colourChanger("2")}
+                  className="bg-red-500 w-3 h-3 rounded-full ml-3 mr-3"
+                ></button>
+                <button
+                  onClick={() => colourChanger("3")}
+                  className="bg-red-500 w-3 h-3 rounded-full"
                 ></button>
               </div>
             </div>
@@ -150,7 +167,6 @@ function Calculator() {
         <main>
           <div className=" flex flex col w-full ">
             <input
-
             value={inputValue}
               className={`${
                 background === "3"
@@ -158,7 +174,7 @@ function Calculator() {
                   : background === "2"
                   ? "d-color2 s-bg2"
                   : "d-color1 s-bg1"
-              }text-5xl font-bold h-17 rounded-xl  text-right p-4  w-full  mb-4 xs:p-6`}
+              } font-bold h-17 rounded-xl text-right p-4 w-full mb-4 xs:p-6`}
             />
           </div>
           <div
