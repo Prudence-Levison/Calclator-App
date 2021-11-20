@@ -1,20 +1,21 @@
 
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* main background */
-.bg1 {
+/* bg = background */
+/* main bg*/
+.main-bg1 {
   background: hsl(222, 26%, 31%);
 }
-.bg2 {
+.main-bg2 {
   background: hsl(0, 0%, 90%);
 }
-.bg3 {
+.main-bg3 {
   background: hsl(268, 75%, 9%);
 }
 
-/* Toggle, keypad Background */
+/* key bg */
 .t-bg1 {
   background: hsl(223, 31%, 20%);
 }
@@ -25,7 +26,7 @@
   background: hsl(268, 71%, 12%);
 }
 
-/* screen background */
+/* screen bg */
 .s-bg1 {
   background: hsl(224, 36%, 15%);
 }
@@ -36,26 +37,44 @@
   background: hsl(268, 71%, 12%);
 }
 
-/* ### KEYS ### */
-
-/* ### Reset and Del Keys### */
+/*  Reset and Del Button */
 .r-btn1{
   background: hsl(225, 21%, 49%);
   box-shadow: hsl(223, 78%, 100%);
   color: hsl(0, 0, 100%);
 }
-.r-key2 {
+.r-btn2 {
   background: hsl(185, 42%, 37%);
   box-shadow: hsl(185, 58%, 25%);
   color: hsl(0, 0, 100%);
 }
-.r-key3 {
+.r-btn3 {
   background: hsl(281, 89%, 26%);
-  box-shadow: hsl(285, 91%, 52%);
+  box-shadow: hsl(285, 91%, 102%);
+  color: #ffffff;
+}
+.p-btn1 {
+  background: hsl(225, 21%, 49%);
+  box-shadow: 0px 5px hsl(225, 21%, 49%);
   color: hsl(0, 0, 100%);
 }
-
-/* ###Equals key### */
+.p-btn2 {
+  background: hsl(45, 7%, 89%);
+  box-shadow: 0px 5px hsl(35, 11%, 61%);
+  color: hsl(60, 10%, 19%);
+}
+.p-btn3 {
+  background: hsl(281, 89%, 26%);
+  box-shadow: 0px 5px hsl(290, 70%, 36%);
+  color: white;
+}
+.p-btn31 {
+  background: hsl(281, 89%, 26%);
+  box-shadow: 0px 5px hsl(290, 70%, 36%);
+  color: white;
+  border-radius: 2em;
+}
+/* Equals Button*/
 .e-btn1 {
   background: hsl(6, 63%, 50%);
   box-shadow: hsl(6, 70%, 34%);
@@ -72,7 +91,7 @@
   color: hsl(198, 20%, 13%);
 }
 
-/* ###Number Keys### */
+/*Number  */
 .n-btn1 {
   background: hsl(30, 25%, 89%);
   box-shadow: 0px 5px hsl(28, 16%, 65%);
@@ -89,7 +108,7 @@
   color: hsl(52, 100%, 62%);
 }
 
-/* Toggle Botton */
+/* Toggle Button */
 .t-btn1 {
   background: hsl(6, 63%, 50%);
 }
