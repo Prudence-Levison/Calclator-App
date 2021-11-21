@@ -41,14 +41,12 @@ function Calculator() {
     const splittedString = inputValue.split(" ");
     let invalid = false;
 
-    // "66 + 009 + 2 - 03 + 620"
-    // ["66", "+", "009", "+", "2", "-", "03", "+", "620"]
+
 
     const newArray = [];
 
     splittedString.forEach((value) => {
       if (value.startsWith(0)) {
-        // https://www.codegrepper.com/code-examples/javascript/javascript+remove+leading+zeros+from+string
         value = value.replace(/^0+/, '')
       }
       newArray.push(value);
@@ -88,7 +86,7 @@ function Calculator() {
                 ? "d-color2"
                 : background === "3"
                 ? "d-color3"
-                : "d-color1"
+                : "text-white"
             } font-bold  xs:text-xl`}
           >
             Calc
@@ -97,7 +95,7 @@ function Calculator() {
             <div
               className={`${
                 background === "1"
-                  ? "d-color1"
+                  ? "text-white"
                   : background === "2"
                   ? "d-color2"
                   : "d-color3"
@@ -114,13 +112,13 @@ function Calculator() {
                     ? "d-color2"
                     : background === "3"
                     ? "d-color3"
-                    : "d-color1"
-                } text-xs mr-3 `}
+                    : "text-white"
+                }  text-xs mr-3 `}
               >
                 THEME
               </p>
 
-              {/* <div className={`${
+              <div className={`${
                   background === "2"
                     ? "t-bg2"
                     : background === "3"
@@ -131,36 +129,23 @@ function Calculator() {
                   onClick={() => colourChanger("1")}
                   className={`${
                     background === "1" && "t-btn1"
-                  } w-2 h-2 rounded-full ml-6`}
+                  } w-3 h-3 rounded-full  ml-3`}
                 ></button>
                 <button
                   onClick={() => colourChanger("2")}
                   className={`${
                     background === "2" && "t-btn2"
-                  } w-2 h-2 rounded-full ml-3`}
+                  } w-3 h-3 rounded-full ml-3 mr-2`}
                 ></button>
                 <button
                   onClick={() => colourChanger("3")}
                   className={`${
                     background === "3" && "t-btn3"
-                  } w-2 h-2 rounded-full`}
+                  } w-3 h-3 rounded-full`}
                 ></button>
-              </div> */}
-
-              <div className="p-2 rounded-3xl text-center flex">
-                <button
-                  onClick={() => colourChanger("1")}
-                  className="bg-red-500 w-3 h-3 rounded-full ml-6"
-                ></button>
-                <button
-                  onClick={() => colourChanger("2")}
-                  className="bg-red-500 w-3 h-3 rounded-full ml-3 mr-3"
-                ></button>
-                <button
-                  onClick={() => colourChanger("3")}
-                  className="bg-red-500 w-3 h-3 rounded-full"
-                ></button>
-              </div>
+              </div> 
+              
+             
             </div>
           </div>
         </header>
@@ -173,7 +158,7 @@ function Calculator() {
                   ? "d-color3 s-bg3"
                   : background === "2"
                   ? "d-color2 s-bg2"
-                  : "d-color1 s-bg1"
+                  : "text-white s-bg1"
               } font-bold h-17 rounded-xl text-right p-4 w-full mb-4 xs:p-6`}
             />
           </div>
@@ -214,7 +199,7 @@ function Calculator() {
               9
             </button>
             <button className={`${
-                background === "3" ? "p-btn3  text-white" : background === "2" ? "P-btn2" : "p-btn1 text-white"
+                background === "3" ? "p-btn3  text-white" : background === "2" ? "p-btn2" : "p-btn1 text-white"
               } rounded-lg` }onClick={handleDelete}>
               DEL
             </button>
@@ -327,8 +312,8 @@ function Calculator() {
             </button>
             <button
               className={`${
-               background === "3" ? "p-btn3 text-white" : background === "2" ? "r-btn2" : "r-btn1"
-              } rounded-lg col-span-2  xs:text-xl text-base`}
+               background === "3" ? "p-btn3 text-white" : background === "2" ? "r-btn2" : "r-btn1 text-white"
+              }  p-0 rounded-lg col-span-2  xs:text-xl text-base`}
               onClick={()=>clearValue()}
             >
               RESET
@@ -336,7 +321,7 @@ function Calculator() {
             <button
               className={`${
                 background=== "3" ? "e-btn3" : background === "2" ? "e-btn2" : "e-btn1"
-              } p-1 rounded-lg col-span-2 `}
+              } p-1 rounded-lg col-span-2 xs:text-xl text-base `}
               onClick={evaluate}
               value={"="}
             >
