@@ -1,3 +1,5 @@
+/* eslint no-eval: 0 */
+
 import React, { useState, useEffect } from "react";
 
 function Calculator() {
