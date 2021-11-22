@@ -64,8 +64,10 @@ function Calculator() {
 
   const handleDelete = () => {
     setInputValue((prevState) => {
-      prevState.slice(0, -1)
+       return prevState.slice(0, -1)
+      
     });
+    console.log(inputValue)
   };
 
   return (
